@@ -17,25 +17,6 @@ gmaps = googlemaps.Client(key='AIzaSyCqm0ZSld2E-3SP7Qak_azIQok_fD32hGU')
 
 url = "https://archive-api.open-meteo.com/v1/archive"
 
-def get_coordinates_bulk(addresses):
-    geolocator = Nominatim(user_agent="geo_locator")
-    coordinates = []
-    for address in addresses:
-        while True:
-            try:
-                time.sleep(1)  # Wait for 2 second before retrying
-                location = geolocator.geocode(address)
-                if location:
-                    latitude = location.latitude
-                    longitude = location.longitude
-                    coordinates.append((latitude, longitude))
-                else:
-                    coordinates.append(None)
-                break  # Break out of the retry loop if geocoding succeeds
-            except (GeocoderTimedOut, GeocoderServiceError) as e:
-                print(e)
-                print(f"Geocoding request failed for address: {address}. Retrying after 1 second...")
-    return coordinates
 cache = {}
 def get_coordinates(address,reference_latitude,reference_longitude,max_retries=2):
     retries = 0
