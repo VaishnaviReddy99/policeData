@@ -9,6 +9,11 @@ requests = "*"
 pytest = "*"
 openpyxl = "*"
 geopy = "*"
+openmeteo-requests = "*"
+requests-cache = "*"
+pandas = "*"
+retry-requests = "*"
+googlemaps = "*"
 
 [dev-packages]
 

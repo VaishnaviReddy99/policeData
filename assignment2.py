@@ -1,5 +1,6 @@
 import csv
 from openpyxl import Workbook
+import argparse
 
 import assignment0.main
 import util
@@ -7,6 +8,8 @@ from assignment0 import main
 
 
 incident_rank = {}
+reference_latitude = 35.220833
+reference_longitude = -97.443611
 
 
 class IncidentAugmented:
@@ -86,37 +89,51 @@ def calculate_ranks(incidents ):
 
 
 
-def main():
-    filename = "files.csv"
+def main(filename):
     parsed_data = parse_csv(filename)
     augmented_data = list()
     augmented_data.append(["Day Of the Week", "Time of Day", "Weather", "Location Rank","Side of Town", "Incident Rank","Nature","EMSSTAT"])
-    count = 0
+    total_data = []
     for pd in parsed_data:
         for data in pd:
             if data:
                 results = assignment0.main.parseAndFetchResults(data)
-                incidentRanks,location_ranks = calculate_ranks(results)
-                addresses = list()
-                for result in results:
-                    day = util.get_day_of_week(result.incident_time)
-                    timeOfDay = util.extract_hour_from_timestamp(result.incident_time)
-                    weather_of_inc = "***placeholder***"
-                    location_rank = location_ranks[result.incident_location]
-                    sideOfTown = "SE"
-                    incident_rank = incidentRanks[result.nature]
-                    nature = result.nature
-                    emstatt = False
-                    if result.incident_ori == "EMSSTAT":
-                        emstatt = True
-                    if result.incident_location:
-                        addresses.append(result.incident_location)
-                    ia = IncidentAugmented(day,timeOfDay,weather_of_inc,location_rank,sideOfTown,incident_rank,nature,emstatt)
-                    augmented_data.append(IncidentAugmented.to_list(ia))
-                    count = count + 1
+                total_data.extend(results)
+    incidentRanks,location_ranks = calculate_ranks(total_data)
+
+    count = 0
+    tc = len(total_data)
+    for result in total_data:
+        #if count > 100 : break
+        day = util.get_day_of_week(result.incident_time)
+        timeOfDay = util.extract_hour_from_timestamp(result.incident_time)
+        latitude, longitude = util.get_coordinates_gmaps(result.incident_location, reference_latitude,
+                                                   reference_longitude)
+        weather_of_inc = util.getWeather(latitude, longitude, result.incident_time)
+        location_rank = location_ranks[result.incident_location]
+        sideOfTown = util.get_town_side(latitude, longitude, reference_latitude, reference_longitude)
+        incident_rank = incidentRanks[result.nature]
+        nature = result.nature
+        emstatt = False
+        if result.incident_ori == "EMSSTAT":
+            emstatt = True
+        ia = IncidentAugmented(day, timeOfDay, weather_of_inc, location_rank, sideOfTown, incident_rank, nature,
+                               emstatt)
+        augmented_data.append(IncidentAugmented.to_list(ia))
+        count = count + 1
+        print(str(tc - count)+" Records pending")
+
+
     filename = "DATASHEET.xlsx"
     create_excel_sheet(filename, augmented_data)
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--urls", type=str, required=True,
+                        help="Incident summary URLs file")
+
+    args = parser.parse_args()
+    if args.urls:
+        main(args.urls)
+
