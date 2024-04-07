@@ -13,7 +13,7 @@ pipenv install
 pipenv run python assignment2.py --urls files.csv
 
 It can be run as follows:
-![](https://github.com/VaishnaviReddy99/cis6930sp24-assignment0/blob/test/output.gif)
+![](https://github.com/VaishnaviReddy99/cis6930sp24-assignment2/blob/test/output.gif)
 
 
 
