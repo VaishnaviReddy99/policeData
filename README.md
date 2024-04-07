@@ -1,19 +1,20 @@
-# cis6930sp24 -- Assignment0 
+# cis6930sp24 -- Assignment2
 
 Name: Sree Vaishnavi Madireddy
 
 UFID: 87626790
 
 # Assignment Description 
-The objective of the project is to create Datasheets for the Incident data
+The objective of the project is to create Datasheets for the Incident data.
+
 # How to install
 pipenv install
 
 ## How to run
-pipenv run python assignment2.py --urls files.csv
+pipenv run python assignment2.py --urls <file_name>
 
 It can be run as follows:
-![](https://github.com/VaishnaviReddy99/cis6930sp24-assignment2/blob/test/output.gif)
+![](https://github.com/VaishnaviReddy99/cis6930sp24-assignment2/blob/main/output.gif)
 
 
 
