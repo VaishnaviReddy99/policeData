@@ -25,7 +25,7 @@ This file is responsible to fetch data from the Given URLS and parse the pdfs to
 #### assignment2.py \
 This is the main file responsible for the task
 
-    create_excel_sheet(filename, data): t creates a new Excel sheet using the openpyxl library and writes the provided data to the sheet.
+    create_excel_sheet(filename, data): t creates a new Excel sheet using the openpyxl library and writes the provided data to the sheet. In this case AugmentedData.xlsx is created.
     
     parse_csv(filename): This function parses a CSV file specified by the filename (string) argument using the csv library. It reads the data row by row and returns a list of lists, where each inner list represents a row from the CSV file.
     
@@ -55,7 +55,8 @@ This is the main file responsible for the task
 
     
 ## Datasheet Development
-The datasheet is created as DATASHEET. 
+The datasheet is created as DATASHEET.md 
+This file contains all the information related to the given dataset
 
 ## Assumptions
 a. The URLs are always provided in a CSV file. It assumes the CSV file contains URLs or some identifier for fetching additional details about each incident.
