@@ -10,15 +10,16 @@ This provides further information to better analyze the Incident data.
 
 ### Who created the dataset (e.g., which team, research group) and on behalf of which entity (e.g., company, institution, organization)?
 Created By: Vaishnavi Madireddy
+
 Affiliation: University of Florida
 
 ## What data does each instance consist of?
 Each record represents a single police incident report. Each instance contains:
-Time of the incident report
-Textual description of the location of the incident 
-Unique identifier for the incident report
-Text description of the type of incident reported
-Incident ORI
+##### Time of the incident report
+##### Textual description of the location of the incident 
+##### Unique identifier for the incident report
+##### Text description of the type of incident reported
+##### Incident ORI
 
 ### “Raw” data (e.g., unprocessed text or images) or features? In either case, please provide a description.
 The initial data  comes from raw text within police incident PDFs
