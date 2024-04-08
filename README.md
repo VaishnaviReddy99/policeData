@@ -5,15 +5,16 @@ Name: Sree Vaishnavi Madireddy
 UFID: 87626790
 
 # Assignment Description 
-The objective of the project is to create Datasheets for the Incident data.
+This assignment focuses on augmenting police incident data (extracted from PDFs in Assignment 0) with contextual details like weather and location. Additionally, a comprehensive data sheet will be created to document the enriched dataset, following established best practices.
 
 # How to install
 pipenv install
 
 ## How to run
-pipenv run python assignment2.py --urls <file_name>
+    pipenv run python assignment2.py --urls <file_name>
 
 It can be run as follows:
+
 ![](https://github.com/VaishnaviReddy99/cis6930sp24-assignment2/blob/main/output.gif)
 
 
@@ -53,6 +54,22 @@ This is the main file responsible for the task
 
     get_coordinates_gmaps(address, reference_latitude, reference_longitude): Retrieves latitude and longitude for an address using the Google Maps Geocoding API. Returns reference coordinates if geocoding fails.
 
+#### test_assignment2.py \
+This file conducts unit tests for functions within assignment2.py. The pytest framework is employed for testing purposes.
+
+    test_parse_csv(): This test validates the capabilities of the parse_csv function to accurately extract data from a CSV file.
+    
+    test_incident_augmented(): This test ensures the correct functionality of the IncidentAugmented class, including its initialization and ability to create a list representation of incident data.
+    
+#### test_util.py \
+This file contains unit tests for functionalities used in assignment2.py. It utilizes the pytest framework for testing.
+
+    test_getCoordinates(): This test verifies that the get_coordinates function from util.py retrieves coordinates different from the provided reference point.
+    
+    test_DayAndHour(): This test ensures that the get_day_of_week and extract_hour_from_timestamp functions from util.py correctly extract the day of the week and hour from a given date-time string.
+
+    test_get_town_side(): This test checks the functionality of the get_town_side function util.py , in determining the side of town based on coordinates and a reference point.
+ 
     
 ## Datasheet Development
 The datasheet is created as DATASHEET.md 
