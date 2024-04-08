@@ -55,7 +55,7 @@ This is the main file responsible for the task
 
     
 ## Datasheet Development
-The datasheet is created as DATASHEET.xlsx. This file gets created during application runtime if not present.
+The datasheet is created as DATASHEET. 
 
 ## Assumptions
 a. The URLs are always provided in a CSV file. It assumes the CSV file contains URLs or some identifier for fetching additional details about each incident.
